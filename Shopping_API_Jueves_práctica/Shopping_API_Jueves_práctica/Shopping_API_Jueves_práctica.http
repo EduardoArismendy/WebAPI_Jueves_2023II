@@ -1,0 +1,6 @@
+@Shopping_API_Jueves_práctica_HostAddress = http://localhost:5045
+
+GET {{Shopping_API_Jueves_práctica_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
