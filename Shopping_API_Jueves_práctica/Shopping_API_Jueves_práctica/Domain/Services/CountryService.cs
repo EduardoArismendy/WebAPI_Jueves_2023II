@@ -14,6 +14,11 @@ namespace Shopping_API_Jueves_práctica.Domain.Services
             _context = context;
         }
 
+        public Task<Country> CreateCountryAsync(Country country)
+        {
+            throw new NotImplementedException();
+        }
+
         //Service o metodos
         public  async Task<Country> CreateCountryAsynk(Country country)
         {
@@ -40,7 +45,7 @@ namespace Shopping_API_Jueves_práctica.Domain.Services
         {
             try
             {
-                var country = await GetCountryById(id);
+                var country = await GetCountryByIdAsync(id);
                 if (country == null)
                 {
                     return null;
@@ -79,7 +84,7 @@ namespace Shopping_API_Jueves_práctica.Domain.Services
             }
         }
 
-        public async Task<Country> GetCountryById(Guid id)
+        public async Task<Country> GetCountryByIdAsync(Guid id)
         {
             
 

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Shopping_API_Jueves_práctica.DAL.Entities;
+using Shopping_API_Jueves_práctica.Domain.Interfaces;
+using Shopping_API_Jueves_práctica.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//Contenedor de dependencias
+builder.Services.AddScoped<ICountryService, CountryService>();
+//builder.Services.AddTransient<ICountryService, CountryService>(); Otras formas - Diferencias en el ciclo de vida
+//builder.Services.AddSingleton<ICountryService, CountryService>(); - Consultar mas
 
 //Esta es la línea de code que necesito para configurar la DB
 builder.Services.AddDbContext<DataBaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString
