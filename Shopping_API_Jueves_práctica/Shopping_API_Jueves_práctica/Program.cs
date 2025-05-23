@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
+//Esta es la línea de code que necesito para configurar la DB
 builder.Services.AddDbContext<DataBaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString
     ("DefaultConnection"))); //Configuración a la base de datos
 
