@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Shopping_API_Jueves_práctica.DAL;
 using Shopping_API_Jueves_práctica.DAL.Entities;
 using Shopping_API_Jueves_práctica.Domain.Interfaces;
 using Shopping_API_Jueves_práctica.Domain.Services;
@@ -13,6 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<ICountryService, CountryService>();
 //builder.Services.AddTransient<ICountryService, CountryService>(); Otras formas - Diferencias en el ciclo de vida
 //builder.Services.AddSingleton<ICountryService, CountryService>(); - Consultar mas
+builder.Services.AddScoped<IStateService, StateService>();
+builder.Services.AddTransient<SeederDB>();
+
 
 //Esta es la línea de code que necesito para configurar la DB
 builder.Services.AddDbContext<DataBaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString
@@ -23,7 +27,22 @@ builder.Services.AddDbContext<DataBaseContext>(o => o.UseSqlServer(builder.Confi
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+SeederData();
+
+void SeederData()
+{
+    IServiceScopeFactory? scopeFactory = app.Services.GetService<IServiceScopeFactory>();
+
+    using (IServiceScope? scope = scopeFactory.CreateScope())
+    {
+        SeederDB? service = scope.ServiceProvider.GetService<SeederDB>();
+        service.SeederAsync().Wait();
+    }
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
