@@ -14,13 +14,9 @@ namespace Shopping_API_Jueves_práctica.Domain.Services
             _context = context;
         }
 
-        public Task<Country> CreateCountryAsync(Country country)
-        {
-            throw new NotImplementedException();
-        }
 
         //Service o metodos
-        public  async Task<Country> CreateCountryAsynk(Country country)
+        public  async Task<Country> CreateCountryAsync(Country country)
         {
            
             try
