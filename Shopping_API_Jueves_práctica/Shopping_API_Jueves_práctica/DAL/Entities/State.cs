@@ -10,7 +10,7 @@ namespace Shopping_API_Jueves_práctica.DAL.Entities
         public string Name { get; set; }
 
         //Así relaciono 2 tablas con EF Core
-
+        [JsonIgnore]
         [Display(Name = "Pais")]
         public Country? Country { get; set; }
 
